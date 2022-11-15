@@ -22,18 +22,18 @@ getFiles = async () => {
     const res = await axios.get(url)
         .then( async (response) => { 
             const result = await Promise.all(response.data.map( async (element) => {
-                let test;
+                
+                let fileData;
 
                 try {
-                    test = await parseResult(element);
+                    fileData = await parseResult(element);
                 } catch (e) {
 
                 }
-                //console.log('TEST', test)
-                return test;
+
+                return fileData;
             }));
             
-            //console.log( result);
             return result;
             
         })
@@ -60,8 +60,8 @@ parseResult = async (data) => {
                     url : data
                 };  
             });
-        //console.log(fileData)        
-        return fileData;
+
+            return fileData;
     }
 
     for (let key in data) {
