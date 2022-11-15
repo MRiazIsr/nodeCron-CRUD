@@ -15,7 +15,7 @@ cron.schedule(process.argv[2], function () {
 
 });
 
-const getFiles = async () => {
+getFiles = async () => {
     const url = 'https://cfrkftig71.execute-api.us-east-1.amazonaws.com/prod?expert=true';
 
     const res = await axios.get(url)
@@ -37,7 +37,7 @@ const getFiles = async () => {
     return res;
 }
 
-const parseResult = (data) => {
+parseResult = (data) => {
     if (typeof(data) === 'string') {
 
         let fileData = axios.get(data)
