@@ -17,9 +17,13 @@ cron.schedule(process.argv[2], async () => {
 
     if (filesData) {
        
-        axios.post(crudURL, {
+        const test = await axios.post(crudURL, {
             filesData: JSON.stringify(filesData),
-        });
+        })
+            .then( (response) => {
+                console.log(response.data);
+            });
+     
         
     }
 
