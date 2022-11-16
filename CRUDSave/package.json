@@ -1,31 +1,31 @@
-
 {
     "name": "CRUDSave",
     "version": "1.0.0",
     "description": "CRUD API",
     "main": "server.js",
     "scripts": {
-      "start": "nodemon server.js"
+        "start": "nodemon server.js"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/MRiazIsr/nodeCron-CRUD.git"
+        "type": "git",
+        "url": "git+https://github.com/MRiazIsr/nodeCron-CRUD.git"
     },
     "keywords": [
-      "Save",
-      "CRUD"
+        "Save",
+        "CRUD"
     ],
     "author": "MRiaz",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/MRiazIsr/nodeCron-CRUD/issues"
+        "url": "https://github.com/MRiazIsr/nodeCron-CRUD/issues"
     },
     "homepage": "https://github.com/MRiazIsr/nodeCron-CRUD#readme",
     "dependencies": {
-      "ejs": "^3.1.8",
-      "express": "^4.18.1"
+        "dotenv": "^16.0.3",
+        "ejs": "^3.1.8",
+        "express": "^4.18.1"
     },
     "devDependencies": {
-      "nodemon": "^2.0.19"
+        "nodemon": "^2.0.19"
     }
-  }
+}

@@ -2,9 +2,11 @@ const cron = require("node-cron");
 const express = require("express");
 const axios = require('axios');
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 
 cron.schedule(process.argv[2], async () => {
-  
+    
     const filesData = await getFiles().then((result) => {
         if (result !== undefined) {  
             return result;
@@ -12,27 +14,21 @@ cron.schedule(process.argv[2], async () => {
             return false;
         }
     });
-
-    const crudURL = 'http://localhost:3001/create'
+    const crudURL = process.env.CRUD_URL + '/create';
 
     if (filesData) {
        
-        const test = await axios.post(crudURL, {
+        const res = await axios.post(crudURL, {
             filesData: JSON.stringify(filesData),
         })
             .then( (response) => {
                 console.log(response.data);
-            });
-     
-        
+            });   
     }
-
-
 });
 
 getFiles = async () => {
-    const url = 'https://cfrkftig71.execute-api.us-east-1.amazonaws.com/prod?expert=true';
-
+    const url = process.env.API_URL;
     const res = await axios.get(url)
         .then( async (response) => { 
             const result = await Promise.all(response.data.map( async (element) => {
@@ -84,6 +80,6 @@ parseResult = async (data) => {
     }     
 }
 
-app.listen(3000, () => {
-  console.log("application listening.....");
+app.listen(process.env.PORT, () => {
+  console.log(process.env.PORT);
 });
