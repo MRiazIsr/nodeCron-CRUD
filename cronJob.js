@@ -8,10 +8,20 @@ cron.schedule(process.argv[2], async () => {
     const filesData = await getFiles().then((result) => {
         if (result !== undefined) {  
             return result;
-        } 
+        } else {
+            return false;
+        }
     });
 
-    
+    const crudURL = 'http://localhost:3001/create'
+
+    if (filesData) {
+       
+        axios.post(crudURL, {
+            filesData: JSON.stringify(filesData),
+        });
+        
+    }
 
 
 });
@@ -52,15 +62,12 @@ parseResult = async (data) => {
         let fileData = await axios.get(data)
             .then( (res) => {
 
-                let buffer = new Buffer.from(res.data);
-                let base64data = buffer.toString('base64');
-
                 return {
-                    data : base64data,
+                    data : res.data,
                     url : data
                 };  
             });
-
+            
             return fileData;
     }
 
