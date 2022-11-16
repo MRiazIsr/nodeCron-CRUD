@@ -50,8 +50,7 @@ exports.writeFile = async (fileData, fileName, url, folder = process.env.FOLDER)
             };
         });
 
-    return writnigResult;
-        
+    return writnigResult;      
 }
 
 saveData = (fileNameObj, url, folder, storageName = process.env.STORAGE_NAME) => {
@@ -77,11 +76,8 @@ saveData = (fileNameObj, url, folder, storageName = process.env.STORAGE_NAME) =>
         .catch( (error) => {
 
             console.error(error);
-        });
-        
-    }   
-   
-    
+        });   
+    }       
 }
 
 checkFileExist = (folder, fileName, i) => {

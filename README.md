@@ -14,7 +14,7 @@
 * Then "cd CRUDSave && npm install" also
 * Then run the "npm run start"
 * Open new terminal tab and "cd .."
-* Then Run cronJob.js with time parametr - "node cronJob.js "* */5 * * * *"
+* Then Run cronJob.js with time parameter - "node cronJob.js * */5 * * * *"
 * "* */5 * * * *" means - run task every five minutes, if we need to run it every "n" secods we need to move "/n" to first star, if hourly to the next star 
 ------------------------------------------------------------------------------------------------------------------    
 ### API Documentation For CRUD
@@ -23,7 +23,7 @@
 
 * Create File:<br>  
 
-|        URI       |      TYPE     |    PARAMS     |     CONTENT TYPE    |     REQUIRED     |     DEFAULT    | 
-|:----------------:|:-------------:|:-------------:|:-------------------:|:----------------:|:--------------:|         
-|     /create      |      POST     |      url      |   Application/JSON  |       TRUE       |                |
-|                  |               |      data     |   Application/JSON  |       TRUE       |                |
+|        URI       |      TYPE     |    PARAMS     |     REQUIRED     |     DEFAULT    | 
+|:----------------:|:-------------:|:-------------:|:----------------:|:--------------:|         
+|     /create      |      POST     |      url      |       TRUE       |                |
+|                  |               |      data     |       TRUE       |                |
