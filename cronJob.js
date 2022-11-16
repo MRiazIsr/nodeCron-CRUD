@@ -3,15 +3,30 @@ const express = require("express");
 const axios = require('axios');
 const app = express();
 
-cron.schedule(process.argv[2], function () {
+cron.schedule(process.argv[2], async () => {
   
-    const files = getFiles().then((result) => {
-        if (result !== undefined) {   
-            const res2 = Promise.all(result).then( (response) => {
-                console.log(response)
-            });
-        } 
+    const filesData = await getFiles().then((result) => {
+        if (result !== undefined) {  
+            return result;
+        } else {
+            return false;
+        }
     });
+
+    const crudURL = 'http://localhost:3001/create'
+
+    if (filesData) {
+       
+        const test = await axios.post(crudURL, {
+            filesData: JSON.stringify(filesData),
+        })
+            .then( (response) => {
+                console.log(response.data);
+            });
+     
+        
+    }
+
 
 });
 
@@ -19,40 +34,45 @@ getFiles = async () => {
     const url = 'https://cfrkftig71.execute-api.us-east-1.amazonaws.com/prod?expert=true';
 
     const res = await axios.get(url)
-        .then( (response) => { 
-            const result = response.data.map( (element) => {
-                return parseResult(element);
-            });
+        .then( async (response) => { 
+            const result = await Promise.all(response.data.map( async (element) => {
+                
+                let fileData;
 
+                try {
+                    fileData = await parseResult(element);
+                } catch (e) {
+
+                }
+
+                return fileData;
+            }));
+            
             return result;
             
         })
         .catch((error) => {
-
-            console.log(error);
-            console.log('we are here fail');
-            //res.status(500).send(error);
+            
+            return undefined;
     });
 
     return res;
 }
 
-parseResult = (data) => {
+parseResult = async (data) => {
+
     if (typeof(data) === 'string') {
 
-        let fileData = axios.get(data)
+        let fileData = await axios.get(data)
             .then( (res) => {
 
-                let buffer = new Buffer.from(res.data);
-                let base64data = buffer.toString('base64');
-
                 return {
-                    data : base64data,
+                    data : res.data,
                     url : data
                 };  
             });
-
-        return fileData;
+            
+            return fileData;
     }
 
     for (let key in data) {
