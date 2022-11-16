@@ -1,0 +1,6 @@
+package-lock.json
+/node_modules
+/CRUDSave/package-lock.json
+/CRUDSave/node_modules
+/CRUDSave/.env
+.env

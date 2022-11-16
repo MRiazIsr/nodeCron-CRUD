@@ -1,6 +1,9 @@
 const fs = require('fs').promises;
 const fsSync = require('fs');
 const path = require("path");
+const dotenv = require('dotenv');
+dotenv.config();
+
 
 exports.getFileNameFormUrl = (urlStr) => {
 
@@ -9,7 +12,7 @@ exports.getFileNameFormUrl = (urlStr) => {
     return path.basename(url.pathname);
 }
 
-exports.writeFile = async (fileData, fileName, url, folder = 'files/') => {
+exports.writeFile = async (fileData, fileName, url, folder = process.env.FOLDER) => {
 
     const fileNameObj = checkFileExist(folder, fileName, 0)
     const path = folder + fileNameObj.name;
@@ -51,7 +54,7 @@ exports.writeFile = async (fileData, fileName, url, folder = 'files/') => {
         
 }
 
-saveData = (fileNameObj, url, folder, storageName = 'files_information.db') => {
+saveData = (fileNameObj, url, folder, storageName = process.env.STORAGE_NAME) => {
 
     const saveObj = JSON.stringify({
         fileUrl : url,
