@@ -39,7 +39,7 @@ exports.writeFile = async (fileData, fileName, url, folder = process.env.FOLDER)
                 fileName : fileName,
                 status : true,
                 error : false,
-            }
+            };
         })
         .catch( (error) => {
 
@@ -47,7 +47,7 @@ exports.writeFile = async (fileData, fileName, url, folder = process.env.FOLDER)
                 fileName : fileName,
                 status : false,
                 error : error,
-            }
+            };
         });
 
     return writnigResult;
@@ -68,7 +68,7 @@ saveData = (fileNameObj, url, folder, storageName = process.env.STORAGE_NAME) =>
         fs.appendFile(storageName, saveObj)
             .then()
             .catch( (error) => {
-                console.error(error)
+                console.error(error);
             });
     } else {
 
@@ -76,7 +76,7 @@ saveData = (fileNameObj, url, folder, storageName = process.env.STORAGE_NAME) =>
         .then()
         .catch( (error) => {
 
-            console.error(error)
+            console.error(error);
         });
         
     }   
@@ -105,6 +105,6 @@ checkFileExist = (folder, fileName, i) => {
         return {
             name : fileName,
             warning : warning
-        }
+        };
     }   
 }
