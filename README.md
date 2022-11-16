@@ -2,7 +2,7 @@
 * This is mixed application for assigment 2
 * Here we have cronJob.js, with enviroments, and CRUD Save applictaion
 * I made them in one repository just cause I wanted to make cleaner which repository for which task
-* Also in git hub I uploaded CRUDSave/files_information.db and CRUDSave/files to show how appliction sacing files and files data
+* Also in git hub I uploaded CRUDSave/files_information.db and CRUDSave/files to show how appliction saving files and files data
 
 ### Technology used in the aplication: ###
 * Node.js version 18+
