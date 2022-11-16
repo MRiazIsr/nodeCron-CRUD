@@ -9,7 +9,7 @@ exports.create = async (req,res) => {
 
         if (filesData[key] !== null) {
 
-            const fileName = helper.getFileNameFormUrl(filesData[key].url)
+            const fileName = helper.getFileNameFormUrl(filesData[key].url);
 
             try {
                 result = await helper.writeFile(filesData[key].data, fileName, filesData[key].url);
@@ -18,7 +18,7 @@ exports.create = async (req,res) => {
                 result = e;
             }
 
-            responseArray.push(result) 
+            responseArray.push(result); 
         }    
     }
 
